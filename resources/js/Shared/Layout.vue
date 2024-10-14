@@ -1,4 +1,13 @@
 <template>
+    <Head>
+        <title>Layout</title>
+        <meta
+            type="description"
+            content="Information for Layout my app"
+            head-key="description"
+        >
+    </Head>
+
     <section class="p-6 bg-gray-200">
         <header class="flex justify-between">
             <div class="flex items-center">
@@ -20,18 +29,11 @@
     </section>
 </template>
 
-<script>
+<script setup>
+import { computed } from "vue"
+import { usePage } from "@inertiajs/inertia-vue3"
 import Nav from "./Nav"
 
-export default {
-    components: {
-        Nav
-    },
+const username = computed(() => usePage().props.value.auth.user.username)
 
-    computed: {
-        username() {
-            return this.$page.props.auth.user.username
-        }
-    }
-}
 </script>

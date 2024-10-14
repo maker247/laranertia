@@ -1,29 +1,32 @@
 <template>
-    <Layout>
-        <h1 class="text-4xl font-bold">Users</h1>
+    <Head>
+        <title>Users</title>
+        <meta
+            type="description"
+            content="Information for Users my app"
+            head-key="description"
+        >
+    </Head>
 
-        <div class="mt-[400px]">
-            <p>The current time is {{ time }}</p>
+    <h1 class="text-4xl font-bold">Users</h1>
 
-            <Link
-                href="/users"
-                class="text-blue-500"
-                preserve-scroll
-            >
-                Refresh
-            </Link>
-        </div>
-    </Layout>
+    <div class="mt-[400px]">
+        <p>The current time is {{ time }}</p>
+
+        <Link
+            href="/users"
+            class="text-blue-500"
+            preserve-scroll
+        >
+            Refresh
+        </Link>
+    </div>
 </template>
 
-<script>
-import Layout from "../Shared/Layout"
+<script setup>
 
-export default {
-    layout: Layout,
+defineProps({
+    time: String
+})
 
-    props: {
-        time: String
-    }
-}
 </script>
