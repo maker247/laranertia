@@ -9,7 +9,16 @@
     </Head>
 
     <div class="flex justify-between">
-        <h1 class="text-4xl font-bold">Users</h1>
+        <div class="flex items-center space-x-2">
+            <h1 class="text-4xl font-bold">Users</h1>
+
+            <Link
+                href="/users/create"
+                class="text-blue-500 text-sm"
+            >
+                Create
+            </Link>
+        </div>
 
         <input
             v-model="search"
@@ -20,7 +29,7 @@
     </div>
 
     <div class="mt-8">
-        <table class="table-auto">
+        <table class="table-auto w-full">
             <tbody>
                 <tr v-for="user in users.data" :key="user.id">
                     <td>{{ user.name }}</td>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +41,16 @@ Route::get('/users/create', function () {
     return Inertia::render('Users/Create');
 });
 
-Route::post('/users',function() {
+Route::post('/users', function() {
+    $attributes = Request::validate([
+        'name' => 'required',
+        'email' => ['required', 'email'],
+        'password' => 'required'
+    ]);
+
+    User::create($attributes);
+
+    return to_route('users/create');
 
 });
 
