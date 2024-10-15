@@ -8,7 +8,16 @@
         >
     </Head>
 
-    <h1 class="text-4xl font-bold">Users</h1>
+    <div class="flex justify-between">
+        <h1 class="text-4xl font-bold">Users</h1>
+
+        <input
+            v-model="search"
+            type="text"
+            class="border px-2 rounded"
+            placeholder="Search"
+        >
+    </div>
 
     <div class="mt-8">
         <table class="table-auto">
@@ -30,10 +39,31 @@
 </template>
 
 <script setup>
-import Pagination from "../Shared/Pagination"
+import {
+    ref,
+    watch
+} from "vue"
+import { Inertia } from "@inertiajs/inertia"
+import Pagination from "../../Shared/Pagination"
 
-defineProps({
-    users: Array
+let props = defineProps({
+    users: Object,
+    filters: Object
+})
+
+let search = ref(props.filters.search)
+
+watch(search, value => {
+    Inertia.get(
+        '/users',
+        {
+            search: value
+        },
+        {
+            preserveState: true,
+            replace: true
+        }
+    )
 })
 
 </script>
