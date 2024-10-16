@@ -14,6 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _Shared_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Shared/Pagination */ "./resources/js/Shared/Pagination.vue");
+/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/debounce */ "./node_modules/lodash/debounce.js");
+/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_debounce__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -28,14 +31,14 @@ __webpack_require__.r(__webpack_exports__);
     __expose();
     var props = __props;
     var search = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search);
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(search, function (value) {
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(search, lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default()(function (value) {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get('/users', {
         search: value
       }, {
         preserveState: true,
         replace: true
       });
-    });
+    }, 500));
     var __returned__ = {
       get props() {
         return props;
@@ -56,6 +59,9 @@ __webpack_require__.r(__webpack_exports__);
       },
       get Pagination() {
         return _Shared_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"];
+      },
+      get debounce() {
+        return (lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default());
       }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
