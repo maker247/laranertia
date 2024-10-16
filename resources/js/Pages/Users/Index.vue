@@ -13,6 +13,7 @@
             <h1 class="text-4xl font-bold">Users</h1>
 
             <Link
+                v-if="can.createUser"
                 href="/users/create"
                 class="text-blue-500 text-sm"
             >
@@ -33,7 +34,7 @@
             <tbody>
                 <tr v-for="user in users.data" :key="user.id">
                     <td>{{ user.name }}</td>
-                    <td><Link href="/">Edit</Link></td>
+                    <td v-if="user.can.edit"><Link href="/">Edit</Link></td>
                 </tr>
             </tbody>
         </table>
@@ -58,7 +59,8 @@ import debounce from "lodash/debounce"
 
 let props = defineProps({
     users: Object,
-    filters: Object
+    filters: Object,
+    can: Object
 })
 
 let search = ref(props.filters.search)
