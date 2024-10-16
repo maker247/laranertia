@@ -187,7 +187,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return _cache[2] || (_cache[2] = [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Settings ")]);
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["active"])])])]);
+  }, 8 /* PROPS */, ["active"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavLink"], {
+    href: "/logout",
+    method: "POST"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return _cache[3] || (_cache[3] = [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Log Out ")]);
+    }),
+    _: 1 /* STABLE */
+  })])])]);
 }
 
 /***/ }),
@@ -244,7 +252,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
   resolve: function () {
     var _resolve = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(name) {
-      var _page$layout;
       var page;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
@@ -257,7 +264,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             // page.layout = Layout
             // }
 
-            (_page$layout = page.layout) !== null && _page$layout !== void 0 ? _page$layout : page.layout = _Shared_Layout__WEBPACK_IMPORTED_MODULE_3__["default"];
+            // page.layout ??= Layout
+
+            if (page.layout === undefined) {
+              page.layout = _Shared_Layout__WEBPACK_IMPORTED_MODULE_3__["default"];
+            }
             return _context.abrupt("return", page);
           case 5:
           case "end":
@@ -491,6 +502,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Auth/Login": [
+		"./resources/js/Pages/Auth/Login.vue",
+		"resources_js_Pages_Auth_Login_vue"
+	],
+	"./Auth/Login.vue": [
+		"./resources/js/Pages/Auth/Login.vue",
+		"resources_js_Pages_Auth_Login_vue"
+	],
 	"./Home": [
 		"./resources/js/Pages/Home.vue",
 		"resources_js_Pages_Home_vue"
