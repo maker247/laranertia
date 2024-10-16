@@ -42,6 +42,8 @@ Route::get('/users/create', function () {
 });
 
 Route::post('/users', function() {
+    sleep(3);
+
     $attributes = Request::validate([
         'name' => 'required',
         'email' => ['required', 'email'],

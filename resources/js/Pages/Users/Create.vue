@@ -23,9 +23,9 @@
             />
 
             <div
-                 v-if="errors.name"
+                 v-if="form.errors.name"
                  class="text-red-500 text-xs mt-1"
-                 v-text="errors.name"
+                 v-text="form.errors.name"
             ></div>
         </div>
 
@@ -45,9 +45,9 @@
             />
 
             <div
-                v-if="errors.email"
+                v-if="form.errors.email"
                 class="text-red-500 text-xs mt-1"
-                v-text="errors.email"
+                v-text="form.errors.email"
             ></div>
         </div>
 
@@ -67,9 +67,9 @@
             />
 
             <div
-                v-if="errors.password"
+                v-if="form.errors.password"
                 class="text-red-500 text-xs mt-1"
-                v-text="errors.password"
+                v-text="form.errors.password"
             ></div>
         </div>
 
@@ -77,6 +77,8 @@
             <button
                 type="submit"
                 class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                :class="{'cursor-not-allowed hover:bg-gray-500 bg-gray-500' : form.processing}"
+                :disabled="form.processing"
             >
                 Submit
             </button>
@@ -85,21 +87,32 @@
 </template>
 
 <script setup>
-    import {reactive} from "vue"
-    import {Inertia} from "@inertiajs/inertia"
+    // import {reactive, ref} from "vue"
+    // import {Inertia} from "@inertiajs/inertia"
+    import {useForm} from "@inertiajs/inertia-vue3"
 
     defineProps({
         errors: Object
     })
 
-    let form = reactive({
+    let form = useForm({
         name: '',
         email: '',
         password: ''
     })
 
+    // let processing = ref(false)
+
     let submit = () => {
-        Inertia.post('/users', form)
+        // processing.value = true
+        //
+        // Inertia.post('/users', form, {
+        //     preserveScroll: true,
+        //     onStart: () => { processing.value = true },
+        //     onFinish: () => { processing.value = false },
+        // })
+
+        form.post('/users')
     }
 
 </script>
